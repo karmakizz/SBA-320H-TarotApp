@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import CardDisplay from './CardDisplay';
 
 function App() {
-  const [tarotData, setTarotData] = useState(null);
+  const [tarotData, setTarotData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -22,7 +23,7 @@ function App() {
       try {
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log(result); // Got the data! 🎉
+        console.log("API Response", result); // Got the data! 🎉
         setTarotData(result);
       } catch (error) {
         setError(error.message);
@@ -38,11 +39,14 @@ function App() {
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {tarotData && (
-        <div>
-          {/* Display tarot data here */}
-          <pre>{JSON.stringify(tarotData, null, 2)}</pre> {/* pre tag to display JSON data */}
-        </div>
+      {tarotData.length > 0 && (
+        <>
+          <CardDisplay cardData={tarotData[0]} /> {/* Pass the first card object */}
+          <div>
+            <h1>Tarot Cards</h1>
+            <pre>{JSON.stringify(tarotData, null, 2)}</pre> {/* Display raw data for debugging */}
+          </div>
+        </>
       )}
     </>
   );
