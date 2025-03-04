@@ -1,23 +1,25 @@
-import { useState } from 'react';
+import { useState } from 'react'; // Importing useState for local component state
 
 function CardDisplay({ cardData }) {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [showDetails, setShowDetails] = useState(false); // Local state to toggle visibility of the card details
 
   const handleCardClick = () => {
-    setIsFlipped((prev) => !prev); // Toggle card flip
+    setShowDetails(prev => !prev); // Toggle the visibility of card details on click
   };
 
-  const imagePath = isFlipped
+  // Determine which image to show based on whether the card is flipped or not
+  const imagePath = showDetails
     ? `/tarot-images/${cardData.card.replace(/\s+of\s+/g, "Of").replace(/\s+/g, '')}.jpg`
     : "/tarot-images/CardBacks.jpg";
 
   return (
-    <div className="tarot-card" onClick={handleCardClick}>
+    <div className="tarot-card" onClick={handleCardClick}> {/* OnClick will trigger the card's flip */}
       <h2 className="tarot-card-title">
-        {isFlipped ? cardData.card : "Click to reveal your fate"}
+        {/* Display card name or a prompt to click to reveal details */}
+        {showDetails ? cardData.card : ""}
       </h2>
       <img className="card-image" src={imagePath} alt={cardData.card} />
-      {isFlipped && (
+      {showDetails && (  // Only show details if the card is flipped
         <>
           <p className="card-meaning">
             <strong>Meaning:</strong> {cardData.meaning}
@@ -32,5 +34,3 @@ function CardDisplay({ cardData }) {
 }
 
 export default CardDisplay;
-
-//This is the component that displays each individual tarot card. It will receive a single card's data as props and handle the card flip logic.
