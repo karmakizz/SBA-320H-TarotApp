@@ -1,49 +1,107 @@
-.jacquard-24-regular {
-    font-family: "Jacquard 24", system-ui;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-
-  .mystic-heading {
-    font-family: "Jacquard 24", system-ui;
-    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
-    color: #e6c38f; /* Soft gold */
-    background: linear-gradient(to bottom, transparent, rgba(19, 13, 96, 0.3));
-    padding: 10px;
+/* General Styles */
+body {
+  background: #1a1a1a url('/path-to-your-mystic-background.jpg') no-repeat center/cover;
+  color: #e6c38f;
 }
 
-/* General Container for Cards */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.font-common {
+  font-family: "Jacquard 24", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Mystic Heading */
+/* Header Styling */
+.mystic-heading {
+  font: normal 400 1.5rem "Jacquard 24", system-ui;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* Glowing effect */
+  color: #e6c38f; /* Soft gold */
+  background: linear-gradient(to bottom, rgba(19, 13, 96, 0.7), transparent);
+  padding: 20px 40px; /* Increased padding for better spacing */
+  border-radius: 15px; /* Smooth rounded corners */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* Soft shadow for depth */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 90%; /* Limit width to prevent stretching */
+  margin: 20px auto; /* Centers the header */
+}
+
+/* Header Gradient */
+.mystic-heading:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3), rgba(19, 13, 96, 0.1));
+  animation: glowing 3s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+/* Glowing Animation */
+@keyframes glowing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Text for Smaller Screens */
+@media (max-width: 600px) {
+  .mystic-heading {
+    font-size: 1.2rem; /* Smaller font size for mobile */
+    padding: 15px 30px; /* Adjust padding for small screens */
+  }
+}
+
+/* Tarot Container */
 .tarot-container {
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping if there are too many cards */
-  justify-content: center; /* Centers the cards in the container */
-  gap: 20px; /* Space between the cards */
-  align-items: stretch; /* Ensures all cards stay equal height */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: stretch;
   padding: 20px;
-  max-width: 1200px; /* Prevents it from stretching too wide */
-  margin: 0 auto; /* Centers the container */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Tarot Card */
 .tarot-card {
-  background: radial-gradient(circle, rgba(45,32,66,1) 0%, rgba(20,18,31,1) 100%);
-  border: 2px solid rgba(255, 215, 0, 0.7); /* Subtle golden border */
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); /* Glowing effect */
-  color: #e0cba8; /* Vintage parchment text color */
+  background: radial-gradient(circle, rgba(45, 32, 66, 1) 0%, rgba(20, 18, 31, 1) 100%);
+  border: 2px solid rgba(255, 215, 0, 0.7);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  color: #e0cba8;
   text-align: center;
   padding: 15px;
   border-radius: 12px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  cursor: pointer;
   max-width: 250px;
   min-height: 400px;
-  max-height: 400px; /* Prevents expansion */
+  max-height: 400px;
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: space-between;
   margin: 20px;
-  overflow: auto; /* Only show scrollbars when necessary */
+  overflow: auto;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
 .tarot-card:hover {
@@ -51,67 +109,53 @@
   box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
 }
 
-/* Title for Card */
 .tarot-card-title {
-  font-size: 1.5rem;
-  font-family: 'UnifrakturMaguntia', cursive; /* Vintage mystical font */
+  font: 1.5rem 'UnifrakturMaguntia', cursive;
   color: #ffcc66;
   margin-bottom: 15px;
-  text-shadow: 3px 3px 15px rgba(255, 215, 0, 0.8); /* Mystical glow */
+  text-shadow: 3px 3px 15px rgba(255, 215, 0, 0.8);
 }
 
-/* Card Image Style */
 .card-image {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
   transition: opacity 0.5s ease-in-out;
 }
+
 .card-content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.8); /* Dark background for contrast */
-  padding: 15px; /* Add padding to make text more readable */
-  opacity: 0; /* Initially hidden */
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  opacity: 0;
   transform: translateY(100%);
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: transform 0.3s, opacity 0.3s;
   max-height: 200px;
   overflow-y: auto;
 }
 
-/* When the card is clicked, reveal the meaning and prediction */
 .tarot-card.active .card-content {
   opacity: 1;
   transform: translateY(0);
 }
 
-
-/* Text Styling for Meaning and Prediction */
 .card-meaning,
 .card-prediction {
-  font-size: 1rem;
-  font-family: 'Serif', sans-serif;
+  font: 1rem 'UnifrakturMaguntia', cursive;
   color: #e0cba8;
   margin-top: 10px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-/* Hover effect for the card to emphasize */
 .tarot-card:hover .card-image {
-  opacity: 0.8; /* Slightly fade the image when hovering to show the mystical aura */
-}
-/* For Webkit browsers (Chrome, Safari, etc.) */
-.tarot-card::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
+  opacity: 0.8;
+
 }
 
-body {
-    background-color: #1a1a1a;
-    background-image: url('/path-to-your-mystic-background.jpg'); /* Optional */
-    background-size: cover;
-    background-blend-mode: darken;
-    color: #e6c38f;
+.tarot-card::-webkit-scrollbar {
+  width: 8px;
 }
