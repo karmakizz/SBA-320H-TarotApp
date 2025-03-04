@@ -26,5 +26,45 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Tests
+coverage
+test-results.xml
+reports
+junit.xml
+test-e2e
+test-results
+
+# Temporary files
+*.sublime-project
+*.sublime-workspace
+*.cache
+*.intl.cache
+*.osxkeychain
+*.pypackage
+*.pybundle
+*.egg-info
+.npm
+.emailzier.json
 .env
+.env.test
+.env.development
+.env.production
+.env.staging
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pids
+profiles
 public
+node_modules
