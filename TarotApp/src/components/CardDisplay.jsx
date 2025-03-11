@@ -9,7 +9,7 @@ function CardDisplay({ cardData }) {
 
   // Determine which image to show based on whether the card is flipped or not
   const imagePath = showDetails
-    ? `/tarot-images/${cardData.card.replace(/\s+of\s+/g, "Of").replace(/\s+/g, '')}.jpg`
+    ? `tarot-images/${cardData.card.replace(/\s+of\s+/g, "Of").replace(/\s+/g, '')}.jpg`
     : "/tarot-images/CardBacks.jpg";
 
   return (
